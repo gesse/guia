@@ -1,0 +1,28 @@
+@(categorias : List[Categoria], categoriaForm: Form[Categoria])
+
+@import helper._
+
+@main("Todo List") {
+	
+	<h1>@categorias.size() categoria(s)</h1>
+	
+	<ul>
+		@for(categoria <- categorias){
+			<li>
+				@categoria.descricao
+				
+				@form(routes.Application.deleteCategoria(categoria.id)){
+					<input type="submit" value="Delete">
+				}				
+			</li>
+		}
+	</ul>
+	
+	<h2>Adicionar uma nova categoria</h2>
+	
+	@form(routes.Application.novaCategoria()){
+		@inputText(categoriaForm("descricao"))
+		
+		<input type="submit" value="Criar">
+	}
+}
