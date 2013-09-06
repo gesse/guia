@@ -8,7 +8,8 @@ public class Application extends Controller {
   
     public static Result index() {
         return ok(index.render("Your new application is ready."));
-        //Isso é um teste de commit remoto 
+        //Isso é um teste de commit remoto
+        //Mais uma mudança
     }
   
 }
