@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.context.annotation.Lazy;
+
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 

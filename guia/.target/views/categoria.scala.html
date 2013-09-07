@@ -21,7 +21,7 @@
 	<h2>Adicionar uma nova categoria</h2>
 	
 	@form(routes.CategoriaController.novaCategoria()){
-		@inputText(categoriaForm("descricao"), args ='placeholder -> "Descrição", 'size -> 60, 'label -> "Descrição:")
+		@inputText(categoriaForm("descricao"))
 		
 		<input type="submit" value="Criar">
 	}
