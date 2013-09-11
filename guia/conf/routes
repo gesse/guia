@@ -11,4 +11,6 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # Categorias
 GET		/categorias					controllers.CategoriaController.categorias()
 POST	/categorias					controllers.CategoriaController.novaCategoria()
-POST	/categorias/:id/delete		controllers.CategoriaController.deleteCategoria(id: Long)	
+GET		/categorias/:id/delete		controllers.CategoriaController.deleteCategoria(id: Long)
+GET		/categoriaForm				controllers.CategoriaController.categoriaForm()	
+POST	/categoriaPesquisar			controllers.CategoriaController.categoriaPesquisar()

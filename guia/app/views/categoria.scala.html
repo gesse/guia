@@ -1,83 +1,74 @@
+
 @(categorias : List[Categoria], categoriaForm: Form[Categoria])
 
 @import helper._
 
-@main("Guia", "Adicionar Categoria") {
+@main("Guia", "Pesquisar Categorias") {
 
-	
-	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
-		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-			<th class="topleft"></th>
-			<td id="tbl-border-top">&nbsp;</td>
-			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
-		</tr>
-		
-		<tr>
-			<td id="tbl-border-left"></td>
-			<td>
-				<!--  start content-table-inner -->
-				<div id="content-table-inner">
-	
-					<table border="0" width="100%" cellpadding="0" cellspacing="0">
-						<tr valign="top">
-							<td>
-	
-								<!-- start id-form -->
-								<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
-									<tr>
-										<th valign="top">Descrição:</th>
-										<td>
-											<input type="text" class="inp-form" placeholder="Descrição da Categoria" name="descricao" />
-											<!--  
-												@inputText(categoriaForm("descricao"), args ='placeholder -> "Descrição", 'size -> 60)
-											-->
-										</td>
-										<td></td>
-									</tr>
-									<tr>
-										<th>Image 1:</th>
-										<td>
-											<input type="file" class="file_1" />
-										</td>
-										<td>
-											<div class="bubble-left"></div>
-											<div class="bubble-inner">JPEG, GIF 5MB max per image</div>
-											<div class="bubble-right"></div>
-										</td>
-									</tr>
-									<tr>
-										<th>&nbsp;</th>
-										<td valign="top">
-											<input type="button" value="" class="form-submit" />
-											<input type="reset" value="" class="form-reset"  />
-										</td>
-										<td></td>
-									</tr>
-								</table>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>
-								<img src="images/shared/blank.gif" width="695" height="1" />
-							</td>
-							<td></td>
-						</tr>
-						<div class="clear"></div>
-					</table>
 
-				</div>
-				<!--  end content-table-inner  -->
-			</td>
-			<td id="tbl-border-right"></td>
-		</tr>
-		<tr>
-			<th class="sized bottomleft"></th>
-			<td id="tbl-border-bottom">&nbsp;</td>
-			<th class="sized bottomright"></th>
-		</tr>			
+	<div class="form">
+    	@form(routes.CategoriaController.categoriaPesquisar(), 'class -> "niceform"){
+    		<fieldset>
+				@inputText(categoriaForm("descricao"))
+				
+				<dl class="submit">
+	            	<input type="submit" name="submit" id="submit" value="Pesquisar" />
+	            </dl>
+    		</fieldset>
+		}
+	</div>
+	
+	<table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+	    <thead>
+	    	<tr>
+	        	<th scope="col" class="rounded-company"></th>
+	            <th scope="col" class="rounded">Categoria</th>
+	            <th scope="col" class="rounded">Data</th>
+	            <th scope="col" class="rounded">Editar</th>
+	            <th scope="col" class="rounded-q4">Excluir</th>
+	        </tr>
+	    </thead>
+        <tfoot>
+	    	<tr>
+	        	<td colspan="4" class="rounded-foot-left">
+	        		<em>Se for o caso colocar alguma observação nessa área.</em>
+	        	</td>
+	        	<td class="rounded-foot-right">&nbsp;</td>
+	        </tr>
+	    </tfoot>
+	    <tbody>
+	    				
+			@for(categoria <- categorias){
+			
+				<tr>
+		        	<td><input type="checkbox" name="" /></td>
+		            <td>@categoria.descricao</td>
+		            <td></td>
+		            <td>
+		            	<a href="#">
+		            		<img src="@routes.Assets.at("images/user_edit.png")" alt="" title="" border="0" />
+		            	</a>
+		            </td>
+		            <td>
+		            	<a href="@routes.CategoriaController.deleteCategoria(categoria.id)" class="ask">
+		            		<img src="@routes.Assets.at("images/trash.png")" alt="" title="" border="0" />
+		            	</a>
+		            	
+		            </td>
+		        </tr>
+					
+			}
+		</tbody>
 	</table>
+	
+	<a href="@routes.CategoriaController.categoriaForm()" class="bt_green"><span class="bt_green_lft"></span><strong>Novo</strong><span class="bt_green_r"></span></a>
+	<!-- 
+	<a href="#" class="bt_blue"><span class="bt_blue_lft"></span><strong>View all items from category</strong><span class="bt_blue_r"></span></a>
+	<a href="#" class="bt_red"><span class="bt_red_lft"></span><strong>Delete items</strong><span class="bt_red_r"></span></a>
+	 -->
+	
+	<div class="pagination">
+		<span class="disabled"><< prev</span><span class="current">1</span><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a>…<a href="">10</a><a href="">11</a><a href="">12</a>...<a href="">100</a><a href="">101</a><a href="">next >></a>
+	</div>
 	
 }

@@ -31,8 +31,18 @@ public class CategoriaController extends Controller {
     	}
     }
     
+    public static Result categoriaForm(){
+    	return ok(
+    			views.html.categoriaForm.render(null, categoriaForm)
+    	);
+    }
+    
     public static Result deleteCategoria(Long id){
     	Categoria.delete(id);
+    	return redirect(routes.CategoriaController.categorias());
+    }
+    
+    public static Result categoriaPesquisar(){
     	return redirect(routes.CategoriaController.categorias());
     }
 
