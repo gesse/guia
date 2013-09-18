@@ -4,15 +4,29 @@
 @import helper._
 
 @main("Guia", "Adicionar Categoria") {
+
+	<script type="text/javascript">
+	
+		function cancelar(){
+			alert("teste");
+			$('#form_categoria').attr("action", '@routes.CategoriaController.categorias()');
+			$('#form_categoria').attr("method", 'get');
+			$('#form_categoria').submit();
+		}
+	
+	</script>
 					     
     <div class="form">
-    	@form(routes.CategoriaController.novaCategoria(), 'class -> "niceform"){
+    	@form(routes.CategoriaController.novaCategoria(), 'class -> "niceform", 'id -> "form_categoria"){
     		<fieldset>
-				@inputText(categoriaForm("descricao"))
+				
+				@inputText(categoriaForm("descricao"), 'size -> 50, '_label -> "Descrição", '_showConstraints -> false, '_showErrors -> true)
 				
 				<dl class="submit">
-	            	<input type="submit" name="submit" id="submit" value="Submit" />
+	            	<input type="submit" name="btn_submit" id="btn_submit" value="Salvar" />
+	            	<input type="button" name="btn_cancelar" id="btn_cancelar" value="Cancelar" onclick="cancelar()"/>
 	            </dl>
+	            
     		</fieldset>
 		}
 		

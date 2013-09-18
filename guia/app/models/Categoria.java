@@ -5,9 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.springframework.context.annotation.Lazy;
-
-import play.data.validation.Constraints.Required;
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 @Entity
@@ -21,9 +19,10 @@ public class Categoria extends Model{
 	public static List<Categoria> lista;
 	
 	@Id
+	
 	public Long id;
 	
-	@Required
+	@Constraints.Required(message="O campo descrição é de preenchimento obrigatório")
 	public String descricao;
 	
 	public static Finder<Long, Categoria> find = new Finder<Long, Categoria>(Long.class, Categoria.class);
